@@ -1,0 +1,86 @@
+/* PatientForm.css */
+h1 { 
+    text-align: center;
+}
+.form-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5C67F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #4a54e1;
+  }
+
+  .address-group {
+    border: 3px solid #ccc;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.address-group label {
+    display: block;
+    margin-top: 10px;
+}
+
+.address-group input,
+.address-group select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+  
+ .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 10px; /* หรือตามที่คุณต้องการ */
+  }
+  
+  .input-group input {
+    margin-right: 10px; /* ระยะห่างระหว่างช่องกรอกข้อมูล */
+  }
+  
+  .input-group input:last-child {
+    margin-right: 0;
+  }
+  .input-group label {
+    text-align: center;      /* Ensures the text in the label is centered */
+    margin-bottom: 5px;      /* Space between the label and the input */
+  }
+  
