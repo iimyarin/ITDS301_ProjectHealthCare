@@ -14,6 +14,7 @@ Local:   http://127.0.0.1:5173/
 
 - ประวัติการแพ้ยา
 - มีให้เลือกที่อยู่ปัจจุบัน และที่อยู่ตามบัตรประชาชน
+- โรคประจำตัว
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
