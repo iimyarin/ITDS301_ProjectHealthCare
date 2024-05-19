@@ -10,6 +10,12 @@ Local:   http://127.0.0.1:5173/
 - npm run dev 
 ```
 
+ระบบลงทะเบียน เพิ่ม
+
+- ประวัติการแพ้ยา
+- มีให้เลือกที่อยู่ปัจจุบัน และที่อยู่ตามบัตรประชาชน
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
