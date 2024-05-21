@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import Select from "react-select"; // Import react-select
 import "./PatientForm.css";
 
 function PatientForm() {
@@ -22,29 +23,40 @@ function PatientForm() {
     subdistrict: "", // ตำบล
     district: "", // อำเภอ
     road: "", // ถนน
-    province: "", // จังหวัด
+    province: "", //
+    zipcode: "",
+    drugAllergies: null,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "birthDate") {
-      calculateAge(value);
+  const handleChange = (inputValue, actionMeta) => {
+    const { name, value } = actionMeta.name ? actionMeta : inputValue;
+
+    // Standard input changes
+    if (actionMeta.action === "input-change") {
+      if (name === "birthDate") {
+        calculateAge(value);
+      } else if (name === "hnNumber" && !/^\d*$/.test(value)) {
+        return;
+      } else if (name === "idCard" && !/^\d{0,13}$/.test(value)) {
+        return;
+      } else if (name === "contactNumber" && !/^\d{0,10}$/.test(value)) {
+        return;
+      }
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    } else if (
+      actionMeta.action === "select-option" ||
+      actionMeta.action === "remove-value" ||
+      actionMeta.action === "clear"
+    ) {
+      // React-select changes
+      setFormData((prevState) => ({
+        ...prevState,
+        [actionMeta.name]: inputValue ? inputValue.value : null,
+      }));
     }
-    if (name === "hnNumber" && !/^\d*$/.test(value)) {
-      // ถ้าช่อง hnNumber ถูกกรอกด้วยค่าที่ไม่ใช่ตัวเลข ไม่ทำอะไร
-      return;
-    }
-    if (name === "idCard") {
-      // ตรวจสอบว่าเป็นตัวเลขและความยาวไม่เกิน 13 หลัก
-      if (!/^\d{0,13}$/.test(value)) return;
-    }
-    if (name === "contactNumber" && !/^\d{0,10}$/.test(value)) {
-      return;
-    }
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
   };
 
   const calculateAge = (birthDate) => {
@@ -65,6 +77,14 @@ function PatientForm() {
       }));
     }
   };
+
+  const drugAllergyOptions = [ //ควรดึงรายการมาจากฐานข้อมูลยา
+    { value: "adapalene", label: "Adapalene" },
+    { value: "aspirin", label: "Aspirin" },
+    { value: "emergency_contraceptive_pill", label: "Emergency Contraceptive Pill" },//ยาคุมฉุกเฉิน 
+    { value: "favipiravir)", label: "Favipiravir" },
+    { value: "paracetamol", label: "Paracetamol" },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -91,13 +111,15 @@ function PatientForm() {
       district: "", // อำเภอ
       road: "", // ถนน
       province: "", // จังหวัด
+      zipcode: "", // 
+      drugAllergies: null,
     });
   };
 
   return (
-    <div>
-      <h1>ระบบลงทะเบียนผู้ป่วย</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="container mt-5">
+      <h1 className="text-center mb-4">ระบบลงทะเบียนผู้ป่วย</h1>
+      <form onSubmit={handleSubmit} className="card card-body shadow">
         <div className="input-group">
           <label htmlFor="title">คำนำหน้าชื่อ:</label>
           <select
@@ -293,6 +315,14 @@ function PatientForm() {
               onChange={handleChange}
               placeholder="จังหวัด"
             />
+            <label htmlFor="province">จังหวัด:</label>
+            <input
+              type="text"
+              name="zipcode"
+              value={formData.province}
+              onChange={handleChange}
+              placeholder="รหัสไปรษณีย์"
+            />
           </div>
         </div>
 
@@ -303,6 +333,29 @@ function PatientForm() {
           onChange={handleChange}
           placeholder="อาการเบื้องต้น"
         />
+        <label htmlFor="drugAllergies">แพ้ยา:</label>
+        <Select
+          id="drugAllergies"
+          name="drugAllergies"
+          value={
+            formData.drugAllergies
+              ? { value: formData.drugAllergies, label: formData.drugAllergies }
+              : null
+          }
+          onChange={(selectedOption, actionMeta) =>
+            handleChange(selectedOption, {
+              ...actionMeta,
+              name: "drugAllergies",
+            })
+          }
+          options={drugAllergyOptions}
+          className="basic-single"
+          classNamePrefix="select"
+          placeholder="เลือกยาที่แพ้..."
+          isClearable
+          isSearchable
+        />
+
         <label htmlFor="appointmentDate">วันที่บันทึก:</label>
         <input
           type="date"
@@ -329,7 +382,7 @@ function PatientForm() {
           <option value="socialSecurity">สิทธิประกันสังคม</option>
           <option value="privateInsurance">ประกันสุขภาพเอกชน</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary w-100">Submit</button>
       </form>
     </div>
   );
