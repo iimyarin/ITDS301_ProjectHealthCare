@@ -11,10 +11,10 @@ function DoctorForm() {
         },
         contained: [{
             resourceType: "Specimen",
-            id: "serum",
+            id: "specimen",
             type: {
                 coding: [{
-                    display: "Blood sample"
+                    display: ""
                 }]
             },
             subject: {
@@ -75,7 +75,7 @@ function DoctorForm() {
         try {
             const response = await axios.post('http://localhost:8080/fhir/ServiceRequest', jsonData); //change to local fhir later https://hapi.fhir.org/baseR4/ServiceRequest
             console.log(response.data);
-            console.log(jsonData);
+            alert("Service Request sent successfully");
         } catch (error) {
             console.error(error);
         }
@@ -116,26 +116,48 @@ function DoctorForm() {
                 </div>
 
                 <div className="input-group">
-                <label className="label">
-                    Display:
-                    <input
-                        name="codeDisplay"
-                        value={jsonData.code.coding[0].display}
-                        onChange={(e) => handleNestedChange(e, ['code', 'coding', 0, 'display'])}
-                        //example - Cholesterol [Mass/volume] in Serum or Plasma
-                        placeholder='Order Detail'
-                    />
-                </label>
+                    <label>Specimen:</label>
+                    <select
+                    name="specimen"
+                    value={jsonData.contained[0].type.coding[0].display}
+                    onChange={(e) => handleNestedChange(e, ['contained', 0, 'type', 'coding', 0, 'display'])}
+                    required
+                    >
+                        <option value="">Select Specimen</option>
+                        <option value="serum">Serum</option>
+                        <option value="plasma">Plasma</option>
+                        <option value="whole blood">Whole Bolld</option>
+                    </select>
+                </div>
+
+                <div className="input-group">
+                    <label>What is being requested :</label>
+                    <select
+                    name="priority"
+                    value={jsonData.code.coding[0].display}
+                    onChange={(e) => handleNestedChange(e, ['code', 'coding', 0, 'display'])}
+                    required
+                    >
+                        <option value="">Select Blood Test Type</option>
+                        <option value="White blood cell count">White blood cell count</option>
+                        <option value="Special blood coagulation test, explain by report">Special blood coagulation test, explain by report</option>
+                        <option value="Blood unit collection for directed donation, donor">Blood unit collection for directed donation, donor</option>
+                        <option value="DNA analysis, antenatal, blood">DNA analysis, antenatal, blood</option>
+                        <option value="Blood coagulation panel">Blood coagulation panel</option>
+                        <option value="Blood cell morphology">Blood cell morphology</option>
+                        <option value="White blood cell histogram evaluation">White blood cell histogram evaluation</option>
+                        <option value="Leukocyte poor blood preparation">Leukocyte poor blood preparation</option>
+
+                    </select>
                 </div>
 
                 <div className="input-group">
                 <label className="label">
-                    Requester Reference:
+                    Requester Reference: 
                     <input
                         name="requesterReference"
                         value={jsonData.requester.reference} //add practitioner reference to Practitioner/[ID]
                         onChange={(e) => handleNestedChange(e, ['requester', 'reference'])}
-                        //placeholder="Practitioner ID"
                     />
                 </label>
                 </div>
@@ -147,7 +169,6 @@ function DoctorForm() {
                         name="subjectReference"
                         value={jsonData.subject.reference}  //add patient reference to Patient/[ID]
                         onChange={(e) => handleNestedChange(e, ['subject', 'reference'])}
-                        //placeholder="Patient ID"
                     />
                 </label>
                 </div>
@@ -159,7 +180,6 @@ function DoctorForm() {
                         name="performerReference"
                         value={jsonData.performer[0].reference} //add Organization reference to Organization/[ID]
                         onChange={(e) => handleNestedChange(e, ['performer', 0, 'reference'])}
-                        //placeholder="Organization ID"
                     />
                 </label>
                 </div>

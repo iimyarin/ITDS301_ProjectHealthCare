@@ -1,223 +1,198 @@
-## Frontend
-- Setting
+## Start Project
 ```
-- cd frontend
-- npm install
-- npm run dev 
+ - npm install
+ - npm run dev
 ```
 
-- url
+## URL Server
+- Docker
 ```
-ServiceRequest    : http://localhost:5173/ServiceRequest
-DiagnosticReport  : http://localhost:5173/DiagnosticReport
-Observation       : http://localhost:5173/Observation
+ - HAPI FHIR    : http://localhost:8080/
+ - FHIR BASE    : http://localhost:8080/fhir/
 ```
-
-## Backend
-- Setting
+Query URL
 ```
-- cd backend
-- mvn spring-boot:run
+ - ServiceRequest : http://localhost:8080/fhir/ServiceRequest
+ - Observation    : http://localhost:8080/fhir/Observation
 ```
 
-- url
+## SETUP RESOURCE
+- Main Resource
 ```
-POST
-ServiceRequest    : http://localhost:8080/service-request
-DiagnosticReport  : http://localhost:8080/diagnostic-report
-Observation       : http://localhost:8080/observation-report
-```
-```
-PUT/GET
-ServiceRequest    : http://localhost:8080/service-request/{id}
-DiagnosticReport  : http://localhost:8080/diagnostic-report/{id}
-Observation       : http://localhost:8080/observation-report/{id}
+ - ServiceRequest | Require Refr (Practitioner, Patient, Organization)
+ - Observation    | Require Refr (Patient)
+
+RefResource
+ - Practitioner
+ - Patient
+ - Organization
 ```
 
-- Postman test setting
-ServiceRequest :
+# START HERE
+
+## Setup Ref Resource
+Before add Main resource, Must be add Ref Resource First by follow this order (Practitioner, Patient, Organization)
+- Practitioner
 ```
-POST     | http://localhost:8080/service-request
-Header   | Content-Type : application/json
+POST     | http://localhost:8080/fhir/Practitioner
 
-GET      | http://localhost:8080/service-request/1521
-Header   | Accept : application/json
-
-PUT      | http://localhost:8080/service-request/1521
-Header   | Content-Type : application/json
-
-Body (raw JSON) [Example]
+Bodt (raw JSON) [For Demo]
 {
-    "resourceType": "ServiceRequest",
-    "id": "request",
-    "text": {
-        "div": "<div>Peter CHALMERS </div>"
-    },
-    "contained": [{
-        "resourceType": "Specimen",
-        "id": "serum",
-        "type": {
-            "coding": [{
-                "display": "Serum sample"
-            }]
-        },
-        "subject": {
-            "reference": "Patient/example"
-        }
-    }],
-    "status": "active",
-    "intent": "original-order",
-    "category": [{
-        "coding": [{
-            "display": "Laboratory procedure"
-        }]
-    }],
-    "priority": "",
-    "code": {
-        "coding": [{
-            "display": ""
-        }]
-    },
-    "requester": {
-        "reference": "Practitioner/example"
-    },
-    "subject": {
-        "reference": "Patient/example"
-    },
-    "performer": [{
-        "reference": "Organization/example"
-    }],
-    "note": [{
-        "text": ""
-    }]
+  "resourceType": "Practitioner",
+  "identifier": [
+    {
+      "system": "http://thai-medical-council.or.th/doctor-id",
+      "value": "99999"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "family": "จริงใจ",
+      "given": [
+        "สมหญิง"
+      ],
+      "prefix": [
+        "พญ."
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "value": "somying.jingjai@example.com",
+      "use": "work"
+    }
+  ],
+  "gender": "female"
 }
 ```
 
-ObservationReport :
+- Patient
 ```
-POST     | http://localhost:8080/observation-report
-Header   | Content-Type : application/json
+POST     | http://localhost:8080/fhir/Practitioner
 
-GET      | http://localhost:8080/observation-report/6858260
-Header   | Accept : application/json
-
-PUT      | http://localhost:8080/observation-report/6858260
-Header   | Content-Type : application/json
-
-Body (raw JSON) [Example]
+Bodt (raw JSON) [For Demo]
 {
-    "resourceType": "Observation",
-    "id": "6858260",
-    "meta": {
-        "versionId": "1",
-        "lastUpdated": "2022-07-31T18:25:24.448+00:00",
-        "source": "#tUknMcV50i9EPfbu"
-    },
+    "resourceType": "Patient",
     "text": {
-        "status": "additional",
-        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">aaa</div>"
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>HN: KK0001 นายพรชัย</p> <p>(เกิด: 1 มกราคม 2543, ชาย)</p></div>"
     },
     "identifier": [
         {
+            "system": "http://www.myhospital.com/hn",
+            "value": "KK0001"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
             "use": "official",
-            "value": "CODICE---FISCALE",
-            "assigner": {
-                "display": "Ministero Economia e Finanze"
-            }
+            "text": "นายพรชัย แข็งแรง",
+            "family": "แข็งแรง",
+            "given": [
+                "นายพรชัย"
+                ],
+            "prefix": [
+                "นาย"
+                ]
         }
     ],
-    "status": "final",
-    "category": [
+    "telecom": [
         {
-            "coding": [
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                    "code": "activity",
-                    "display": "Activity"
-                }
-            ]
-        }
-    ],
-    "code": {
-        "coding": [
-            {
-                "system": "http://loinc.org",
-                "code": "Heart rate"
-            }
-        ]
-    },
-    "subject": {
-        "id": "6857562",
-        "reference": "Patient/6857562",
-        "display": "Patient"
-    },
-    "effectiveDateTime": "2022-07-31T17:17:16Z",
-    "issued": "2022-07-31T20:23:27.701015+02:00",
-    "performer": [
+            "system": "phone",
+            "value": "0 2123 4567",
+            "use": "home"
+        },
         {
-            "id": "6857562",
-            "reference": "Patient/6857562",
-            "display": "Patient"
+            "system": "phone",
+            "value": "08 1123 4567",
+            "use": "mobile"
         }
     ],
-    "valueQuantity": {
-        "value": 456.0,
-        "unit": "/min",
-        "system": "http://unitsofmeasure.org",
-        "code": "8867-4"
-    },
-    "note": [
+    "gender": "male",
+    "birthDate": "2000-01-01",
+    "address": [
         {
-            "authorString": "Patient",
-            "text": "bbbb"
+            "use": "home",
+            "type": "both",
+            "text": "เลขที่ 2 ถนนวังหลัง แขวงศิริราช เขตบางกอกน้อย กรุงเทพมหานคร, 10700",
+            "line": [
+                "เลขที่ 2 ถนนวังหลัง"
+                ],
+            "city": "ศิริราช",
+            "district": "บางกอกน้อย",
+            "state": "กรุงเทพมหานคร",
+            "postalCode": "10700"
         }
-    ],
-    "device": {
-        "display": "Gear Fit e"
-    }
+    ]
 }
 ```
-
-DiagnosticReport :
+- Organization
 ```
-POST | http://localhost:8080/diagnostic-report
-Header   | Content-Type : application/json
+POST     | http://localhost:8080/fhir/Organization
 
-GET      | http://localhost:8080/diagnostic-report/44716109
-Header   | Accept : application/json
-
-PUT      | http://localhost:8080/diagnostic-report/44716109
-Header   | Content-Type : application/json
-
-Body (raw JSON) [Example]
+Bodt (raw JSON) [For Demo]
 {
-  "resourceType": "DiagnosticReport",
+  "resourceType": "Organization",
   "identifier": [
     {
-      "system": "http://hospital.org/reports",
-      "value": "54321"
+      "system": "http://demo.thai-hospital-database.go.th",
+      "value": "KK0001"
     }
   ],
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "1234-5",
-        "display": "Blood test report"
-      }
-    ]
-  },
-  "subject": {
-    "reference": "Patient/30358"
-  },
-  "result": [
+  "active": true,
+  "type": [
     {
-      "reference": "Observation/30536"
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        }
+      ],
+      "text": "Healthcare Provider"
+    }
+  ],
+  "name": "โรงพยาบาลขอนแก่น",
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "043236974"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "54 ถ.ศรีจันทร์ ต.ในเมือง"
+      ],
+      "city": "เมืองขอนแก่น",
+      "state": "ขอนแก่น",
+      "postalCode": "40000",
+      "country": "TH"
     }
   ]
 }
+```
 
+## DEMO
+After we add Ref Resource, Now we ready to use webpage to send Request,Lab result to server
+- ServiceRequest
+```
+Direct to : http://localhost:5173/ServiceRequest
+Fill form and submit form. 
+    - Requester Reference = Practitioner/1
+    - Subject Reference = Patient/2
+    - Performer Reference = Organization/3
+Use Dev Tool(F12) to peek through the console for a ServiceRequestId 
+Now we can see result at http://localhost:8080/fhir/ServiceRequest/
+```
+
+## NOTE
+```
+เราลองทำหน้า Fetch ข้อมูลเล่นๆดูแล้ว ลองใช้เป็น Template ดึงข้อมูลจาก FHIR มาแสดงผลได้เลย
+ชื่อไฟล์ TestFetch.jsx :  http://localhost:5173/fetchRequest
 ```
 
 

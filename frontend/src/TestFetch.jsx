@@ -5,7 +5,6 @@ const TestFetch = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // Replace 'http://localhost:5000/api/service-request' with your actual API endpoint
     axios.get('http://localhost:8080/fhir/ServiceRequest')
       .then(response => {
         setData(response.data);
