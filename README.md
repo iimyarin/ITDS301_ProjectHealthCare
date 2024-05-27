@@ -32,7 +32,7 @@ RefResource
 
 ## Setup Ref Resource
 Before add Main resource, We must be add Ref Resource First by follow this order (Practitioner, Patient, Organization)
-* Use PostMan *
+### Use Postman
 - Practitioner
 ```
 POST     | http://localhost:8080/fhir/Practitioner
