@@ -19,8 +19,8 @@ Query URL
 ## OVERALL RESOURCE
 - Main Resource
 ```
- - ServiceRequest | Require Refr (Practitioner, Patient, Organization)
- - Observation    | Require Refr (Patient)
+ - ServiceRequest | Require Ref (Practitioner, Patient, Organization)
+ - Observation    | Require Ref (Patient)
 ```
 - Ref Resource
 ```
