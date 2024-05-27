@@ -32,13 +32,14 @@ Query URL
 # START HERE
 
 ## Setup Ref Resource
-Before add Main resource, We need to POST Ref Resource first by follow this order (Practitioner, Patient, Organization)
+We need to POST Ref Resource first by follow this order (Practitioner, Patient, Organization)
 ### Use Postman
 - Practitioner
 ```
 POST     | http://localhost:8080/fhir/Practitioner
+//Note : no need to set headers.
 
-Bodt (raw JSON) [For Demo]
+Body (raw JSON) [Example]
 {
   "resourceType": "Practitioner",
   "identifier": [
@@ -74,7 +75,7 @@ Bodt (raw JSON) [For Demo]
 ```
 POST     | http://localhost:8080/fhir/Practitioner
 
-Bodt (raw JSON) [For Demo]
+Body (raw JSON) [Example]
 {
     "resourceType": "Patient",
     "text": {
@@ -135,7 +136,7 @@ Bodt (raw JSON) [For Demo]
 ```
 POST     | http://localhost:8080/fhir/Organization
 
-Bodt (raw JSON) [For Demo]
+Body (raw JSON) [Example]
 {
   "resourceType": "Organization",
   "identifier": [
