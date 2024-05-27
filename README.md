@@ -16,13 +16,14 @@ Query URL
  - Observation    : http://localhost:8080/fhir/Observation
 ```
 
-## SETUP RESOURCE
+## OVERALL RESOURCE
 - Main Resource
 ```
  - ServiceRequest | Require Refr (Practitioner, Patient, Organization)
  - Observation    | Require Refr (Patient)
-
-RefResource
+```
+- Ref Resource
+```
  - Practitioner
  - Patient
  - Organization
