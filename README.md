@@ -31,7 +31,8 @@ RefResource
 # START HERE
 
 ## Setup Ref Resource
-Before add Main resource, Must be add Ref Resource First by follow this order (Practitioner, Patient, Organization)
+Before add Main resource, We must be add Ref Resource First by follow this order (Practitioner, Patient, Organization)
+* Use PostMan *
 - Practitioner
 ```
 POST     | http://localhost:8080/fhir/Practitioner
