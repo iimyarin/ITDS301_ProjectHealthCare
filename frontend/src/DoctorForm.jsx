@@ -7,14 +7,14 @@ function DoctorForm() {
         resourceType: "ServiceRequest",
         id: "request",
         text: {
-            div: "<div>Peter CHALMERS </div>"
+            div: "<div></div>"
         },
         contained: [{
             resourceType: "Specimen",
             id: "serum",
             type: {
                 coding: [{
-                    display: "Serum sample"
+                    display: "Blood sample"
                 }]
             },
             subject: {
@@ -71,26 +71,15 @@ function DoctorForm() {
         });
     };
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      setLoading(true);
-      setSuccess(false);
-      setError('');
-  
-      try {
-          const response = await axios.post('/service-request', JSON.stringify(jsonData), {
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          });
-          console.log(response.data);
-          setSuccess(true);
-      } catch (error) {
-          console.error(error);
-          setError('Failed to submit the form');
-      } finally {
-          setLoading(false);
-      }
-  };
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8080/fhir/ServiceRequest', jsonData); //change to local fhir later https://hapi.fhir.org/baseR4/ServiceRequest
+            console.log(response.data);
+            console.log(jsonData);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
 
     return (

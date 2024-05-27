@@ -15,6 +15,7 @@ function ObservationForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission
+        
     };
 
     const handleChange = (e) => {
@@ -26,10 +27,10 @@ function ObservationForm() {
     };
 
     return (
-        <div>
-            <h2>Observation Form</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
+        <div className="container mt-4">
+            <h1  className="text-center mb-2">Observation Form</h1>
+            <form onSubmit={handleSubmit} className="card card-body shadow">
+                <label className="label">
                     ID:
                     <input
                         type="text"
@@ -39,7 +40,7 @@ function ObservationForm() {
                     />
                 </label>
                 <br />
-                <label>
+                <label className="label">
                     Category:
                     <input
                         type="text"
@@ -49,7 +50,7 @@ function ObservationForm() {
                     />
                 </label>
                 <br />
-                <label>
+                <label className="label">
                     Code:
                     <input
                         type="text"
@@ -59,7 +60,7 @@ function ObservationForm() {
                     />
                 </label>
                 <br />
-                <label>
+                <label className="label">
                     Subject:
                     <input
                         type="text"
@@ -69,7 +70,7 @@ function ObservationForm() {
                     />
                 </label>
                 <br />
-                <label>
+                <label className="label">
                     Effective Date Time:
                     <input
                         type="datetime-local"
@@ -79,7 +80,7 @@ function ObservationForm() {
                     />
                 </label>
                 <br />
-                <label>
+                <label className="label">
                     Value Codeable Concept:
                     <input
                         type="text"
@@ -89,7 +90,7 @@ function ObservationForm() {
                     />
                 </label>
                 <br />
-                <label>
+                <label className="label">
                     Status:
                     <input
                         type="text"
