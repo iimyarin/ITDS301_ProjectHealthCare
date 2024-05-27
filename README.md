@@ -34,4 +34,62 @@ DiagnosticReport  : http://localhost:8080/diagnostic-report/{id}
 Observation       : http://localhost:8080/observation-report/{id}
 ```
 
+- Postman Setting
+-- ServiceRequest :
+```
+POST/PUT | http://localhost:8080/service-request
+GET      | http://localhost:8080/service-request/1521
+Header   | Accept : application/json
+Body (raw JSON) [Example]
+{
+    "resourceType": "ServiceRequest",
+    "id": "request",
+    "text": {
+        "div": "<div>Peter CHALMERS </div>"
+    },
+    "contained": [{
+        "resourceType": "Specimen",
+        "id": "serum",
+        "type": {
+            "coding": [{
+                "display": "Serum sample"
+            }]
+        },
+        "subject": {
+            "reference": "Patient/example"
+        }
+    }],
+    "status": "active",
+    "intent": "original-order",
+    "category": [{
+        "coding": [{
+            "display": "Laboratory procedure"
+        }]
+    }],
+    "priority": "",
+    "code": {
+        "coding": [{
+            "display": ""
+        }]
+    },
+    "requester": {
+        "reference": "Practitioner/example"
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "performer": [{
+        "reference": "Organization/example"
+    }],
+    "note": [{
+        "text": ""
+    }]
+}
+```
+
+-- ServiceRequest :
+```
+
+```
+
 
