@@ -31,7 +31,7 @@ RefResource
 # START HERE
 
 ## Setup Ref Resource
-Before add Main resource, We must be add Ref Resource First by follow this order (Practitioner, Patient, Organization)
+Before add Main resource, We need to POST Ref Resource first by follow this order (Practitioner, Patient, Organization)
 ### Use Postman
 - Practitioner
 ```
@@ -178,7 +178,7 @@ Bodt (raw JSON) [For Demo]
 ```
 
 ## DEMO
-After we add Ref Resource, Now we ready to use webpage to send Request,Lab result to server
+After we POST Ref Resource, Now we ready to use webpage to send Request,Lab result to server
 - ServiceRequest
 ```
 Direct to : http://localhost:5173/ServiceRequest
@@ -189,6 +189,14 @@ Fill form and submit form.
 Use Dev Tool(F12) to peek through the console for a ServiceRequestId 
 Now we can see result at http://localhost:8080/fhir/ServiceRequest/
 ```
+- Observation
+```
+Direct to : http://localhost:5173/Observation
+...บิวตี้เพิ่มขั้นตอนตรงนี้...
+..
+..
+```
+
 
 ## NOTE
 ```
