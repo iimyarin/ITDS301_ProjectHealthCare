@@ -195,9 +195,10 @@ Now we can see result at http://localhost:8080/fhir/ServiceRequest/
 - Observation
 ```
 Direct to : http://localhost:5173/Observation
-...บิวตี้เพิ่มขั้นตอนตรงนี้...
-..
-..
+Fill form and submit form. 
+    - Subject Reference = Patient/{id}
+Use Dev Tool(F12) to peek through the console for a ServiceRequestId 
+Now we can see result at http://localhost:8080/fhir/Observation/
 ```
 
 
