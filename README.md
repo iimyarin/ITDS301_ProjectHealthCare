@@ -1,6 +1,7 @@
 ## Start Project
 ```
  - npm install
+ - npm install axios
  - npm run dev
 ```
 
