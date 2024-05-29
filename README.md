@@ -186,9 +186,9 @@ After we POST Ref Resource, Now we ready to use webpage to send Request,Lab resu
 ```
 Direct to : http://localhost:5173/ServiceRequest
 Fill form and submit form. 
-    - Requester Reference = Practitioner/1
-    - Subject Reference = Patient/2
-    - Performer Reference = Organization/3
+    - Requester Reference = Practitioner/{id}
+    - Subject Reference = Patient/{id}
+    - Performer Reference = Organization/{id}
 Use Dev Tool(F12) to peek through the console for a ServiceRequestId 
 Now we can see result at http://localhost:8080/fhir/ServiceRequest/
 ```
@@ -197,7 +197,7 @@ Now we can see result at http://localhost:8080/fhir/ServiceRequest/
 Direct to : http://localhost:5173/Observation
 Fill form and submit form. 
     - Subject Reference = Patient/{id}
-Use Dev Tool(F12) to peek through the console for a ServiceRequestId 
+Use Dev Tool(F12) to peek through the console for a ObservationId 
 Now we can see result at http://localhost:8080/fhir/Observation/
 ```
 
