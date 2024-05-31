@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 const TestFetch = () => {
   const [data, setData] = useState(null);
@@ -20,8 +21,14 @@ const TestFetch = () => {
 
   return (
     <div>
-      <h1>Service Request</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <Navbar /> {}
+      <div className="container mt-5">
+        <h1 className="text-center mb-4">Service Request</h1>
+        <form className="card card-body shadow">
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </form>
+        
+      </div>
     </div>
   );
 };

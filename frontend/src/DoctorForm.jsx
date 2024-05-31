@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import "./DoctorForm.css";
+import Navbar from './Navbar';
 
 function DoctorForm() {
     const [jsonData, setJsonData] = useState({
@@ -18,7 +19,7 @@ function DoctorForm() {
                 }]
             },
             subject: {
-                reference: "Patient/example"
+                reference: "Patient/"
             }
         }],
         status: "active",
@@ -35,13 +36,13 @@ function DoctorForm() {
             }]
         },
         requester: {
-            reference: "Practitioner/example"
+            reference: "Practitioner/"
         },
         subject: {
-            reference: "Patient/example"
+            reference: "Patient/"
         },
         performer: [{
-            reference: "Organization/example"
+            reference: "Organization/"
         }],
         note: [{
             text: ""
@@ -77,16 +78,18 @@ function DoctorForm() {
             console.log(response.data);
             alert("Service Request sent successfully");
         } catch (error) {
-            console.error(error);
+            console.error("Error submit service request data:", error);
         }
     };
 
 
     return (
-        <div className="container mt-4">
-            <h1 className="text-center mb-2">Doctor Form</h1>
-            <form onSubmit={handleSubmit} className="card card-body shadow">
-
+        <div>
+            <Navbar /> {}
+        <div className="container mt-5">
+            <h1 className="text-center mb-4">Service Request Form</h1>
+            <form onSubmit={handleSubmit} className="card card-body shadow ">
+            <div className="form-group">
                 <div className="input-group">
                 <label className="label">
                     Category :
@@ -126,7 +129,7 @@ function DoctorForm() {
                         <option value="">Select Specimen</option>
                         <option value="serum">Serum</option>
                         <option value="plasma">Plasma</option>
-                        <option value="whole blood">Whole Bolld</option>
+                        <option value="whole blood">Whole Blood</option>
                     </select>
                 </div>
 
@@ -194,11 +197,13 @@ function DoctorForm() {
                     />
                 </label>
                 </div>
-                <button>Send</button>
+                <button type="submit" className="btn btn-primary w-100">Submit</button>
+                </div>
             </form>
 
             
         </div>
+    </div>
     );
 };
 
