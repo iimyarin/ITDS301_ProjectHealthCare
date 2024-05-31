@@ -586,7 +586,7 @@ function ObservationForm() {
           <div>
 
           <Navbar />{}
-          <div className="container mt-5">
+          <div className="containermt-5">
               <h1 className="text-center mb-4">Observation Form</h1>
               <form onSubmit={handleSubmit} className="card card-body shadow">
                   {/* Resource Type */}

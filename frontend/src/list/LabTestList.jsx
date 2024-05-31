@@ -36,7 +36,7 @@ function LabTestList() {
     return (
         <div>
             <Navbar /> {}
-            <div className="container mt-5">
+            <div className="containermt-5">
                 <h1 className="text-center mb-4">Hematology Table</h1>
                 <form className="card card-body shadow">
                     <table border="1">

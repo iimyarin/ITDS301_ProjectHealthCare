@@ -7,7 +7,7 @@ function Home(){
     return(
         <div>
             <Navbar />{}
-           <div className="container mt-5">
+           <div className="containermt-5">
             <div className="text-center mb-4">
                 <div className="max-w-md">
                 <h1 className="text-5xl font-bold">Welcome</h1>

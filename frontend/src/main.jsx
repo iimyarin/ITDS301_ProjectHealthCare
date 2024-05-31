@@ -11,7 +11,7 @@ import ObservationList from './list/ObservationList.jsx'
 import SpecimenForm from './SpecimenForm.jsx'
 import LabTestList from './list/LabTestList.jsx'
 import SpecimenList from './list/SpecimenList.jsx'
-import HematologyList from'./list/list.jsx'
+
 
 import './index.css'
 
@@ -33,7 +33,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/specimen" element={<SpecimenForm />} />
         <Route path="/specimenlist" element={<SpecimenList />} />
         <Route path="/lablist" element={<LabTestList/>} />
-        <Route path="/list" element={<HematologyList/>} />
         <Route path="/lablist/:id" element={<LabTestList/>} />
       </Routes>
     </div>

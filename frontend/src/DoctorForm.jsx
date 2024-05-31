@@ -86,7 +86,7 @@ function DoctorForm() {
     return (
         <div>
             <Navbar /> {}
-        <div className="container mt-5">
+        <div className="containermt-5">
             <h1 className="text-center mb-4">Service Request Form</h1>
             <form onSubmit={handleSubmit} className="card card-body shadow ">
             <div className="form-group">
