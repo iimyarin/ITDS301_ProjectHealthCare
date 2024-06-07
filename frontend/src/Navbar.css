@@ -1,0 +1,73 @@
+
+
+.navbar-logo {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1.5rem;
+}
+
+.navbar-logo:focus,
+.navbar-logo:hover,
+.navbar-logo:active {
+  text-decoration: none;
+  outline: none;
+}
+
+.navbar-item {
+  margin-left: 10px;
+}
+
+.navbar-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-item a:hover {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;   
+  background-color: rgb(208, 158, 82);
+  padding: 20px;
+  width: 100vw; /* กำหนดความกว้างให้เท่ากับ viewport width */
+}
+
+.navbar-start {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .navbar {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    max-width: 1140px;
+  }
+}
